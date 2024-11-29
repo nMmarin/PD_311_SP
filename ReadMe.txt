@@ -1,4 +1,5 @@
-
+https://github.com/okovtun/PD_311_SP.git
+https://www.youtube.com/playlist?list=PLeqyOOqxeiIMJrWRorftIh4Q3jamE8qmO
 
 Hardware:
 https://www.youtube.com/playlist?list=PLeqyOOqxeiINK1krBBk-nu_z52oubMPrO
