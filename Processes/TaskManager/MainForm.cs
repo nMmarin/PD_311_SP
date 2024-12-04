@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace TaskManager
 {
@@ -116,6 +117,63 @@ namespace TaskManager
 			tollStripMenuItemDestroy.Enabled =
 			listViewProcesses.SelectedItems.Count > 0;
 		}
+
+		private void toolStripMenuItemOpenFileLocation_Click(object sender, EventArgs e)
+		{
+			string filename = processes[Convert.ToInt32(listViewProcesses.SelectedItems[0].Name)].MainModule.FileName;
+			//MessageBox.Show(this, filename, "Location", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			ShellExecute(this.Handle, "open", "explorer.exe", $"/select,\"{filename}\"", "", 1);
+			filename = filename.Remove(filename.LastIndexOf("\\"));
+			//Process.Start("explorer", filename);
+			//Process.GetCurrentProcess().Handle.
+		}
+		//private void toolStripMenuItemOpenFileLocation_Click(object sender, EventArgs e)
+		//{
+		//	try
+		//	{
+		//		int processId = Convert.ToInt32(listViewProcesses.SelectedItems[0].Name);
+		//		var process = processes[processId];
+
+		//		// Проверка доступности MainModule для процесса
+		//		string filename = string.Empty;
+
+		//		try
+		//		{
+		//			filename = process.MainModule.FileName;
+		//		}
+		//		catch (Exception ex)
+		//		{
+		//			MessageBox.Show($"Не удалось получить путь к файлу процесса: {ex.Message}");
+		//			return;
+		//		}
+
+		//		// Проверка на существование файла
+		//		if (File.Exists(filename))
+		//		{
+		//			// Открытие проводника с выделением файла
+		//			ShellExecute(this.Handle, "open", "explorer.exe", $"/select,\"{filename}\"", "", 1);
+		//		}
+		//		else
+		//		{
+		//			MessageBox.Show("Файл не существует.");
+		//		}
+		//	}
+		//	catch (Exception ex)
+		//	{
+		//		MessageBox.Show($"Ошибка: {ex.Message}");
+		//	}
+		//}
+
+		[DllImport("shell32.dll")]
+		static extern IntPtr ShellExecute
+			(
+			IntPtr hwnd,
+			string lpOpretion,
+			string lpFile,
+			string lpParameters,
+			string lpDirectory,
+			int nCmdShow
+			);
 	}
 }
 //using System;

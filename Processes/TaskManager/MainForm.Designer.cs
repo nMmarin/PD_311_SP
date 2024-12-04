@@ -277,6 +277,7 @@ namespace TaskManager
 			this.toolStripMenuItemOpenFileLocation.Name = "toolStripMenuItemOpenFileLocation";
 			this.toolStripMenuItemOpenFileLocation.Size = new System.Drawing.Size(180, 22);
 			this.toolStripMenuItemOpenFileLocation.Text = "Open File Location";
+			this.toolStripMenuItemOpenFileLocation.Click += new System.EventHandler(this.toolStripMenuItemOpenFileLocation_Click);
 			// 
 			// tollStripMenuItemDestroy
 			// 
