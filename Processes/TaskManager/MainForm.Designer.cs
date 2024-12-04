@@ -55,8 +55,8 @@
 			this.tabPagePerformance = new System.Windows.Forms.TabPage();
 			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.contextMenuProcList = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.openFileLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.destroyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItemOpenFileLocation = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItemDestroy = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
 			this.mainMenu.SuspendLayout();
 			this.statusStripMain.SuspendLayout();
@@ -264,29 +264,30 @@
 			// contextMenuProcList
 			// 
 			this.contextMenuProcList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openFileLocationToolStripMenuItem,
+            this.toolStripMenuItemOpenFileLocation,
             this.toolStripSeparator4,
-            this.destroyToolStripMenuItem});
+            this.toolStripMenuItemDestroy});
 			this.contextMenuProcList.Name = "contextMenuProcList";
 			this.contextMenuProcList.Size = new System.Drawing.Size(181, 76);
+			this.contextMenuProcList.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuProcList_Opening);
 			// 
-			// openFileLocationToolStripMenuItem
+			// toolStripMenuItemOpenFileLocationT
 			// 
-			this.openFileLocationToolStripMenuItem.Name = "openFileLocationToolStripMenuItem";
-			this.openFileLocationToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-			this.openFileLocationToolStripMenuItem.Text = "Open file location";
+			this.toolStripMenuItemOpenFileLocation.Name = "toolStripMenuItemOpenFileLocationT";
+			this.toolStripMenuItemOpenFileLocation.Size = new System.Drawing.Size(180, 22);
+			this.toolStripMenuItemOpenFileLocation.Text = "Open file location";
 			// 
-			// destroyToolStripMenuItem
+			// toolStripMenuItemDestroy
 			// 
-			this.destroyToolStripMenuItem.Name = "destroyToolStripMenuItem";
-			this.destroyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.destroyToolStripMenuItem.Text = "Destroy";
-			this.destroyToolStripMenuItem.Click += new System.EventHandler(this.destroyToolStripMenuItem_Click);
+			this.toolStripMenuItemDestroy.Name = "toolStripMenuItemDestroy";
+			this.toolStripMenuItemDestroy.Size = new System.Drawing.Size(180, 22);
+			this.toolStripMenuItemDestroy.Text = "Destroy";
+			this.toolStripMenuItemDestroy.Click += new System.EventHandler(this.destroyToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator4
 			// 
 			this.toolStripSeparator4.Name = "toolStripSeparator4";
-			this.toolStripSeparator4.Size = new System.Drawing.Size(165, 6);
+			this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
 			// 
 			// MainForm
 			// 
@@ -339,9 +340,9 @@
 		private System.Windows.Forms.ColumnHeader columnProcessName;
 		private System.Windows.Forms.ColumnHeader columnPID;
 		private System.Windows.Forms.ContextMenuStrip contextMenuProcList;
-		private System.Windows.Forms.ToolStripMenuItem openFileLocationToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOpenFileLocation;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-		private System.Windows.Forms.ToolStripMenuItem destroyToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDestroy;
 	}
 }
 

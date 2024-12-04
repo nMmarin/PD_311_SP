@@ -109,5 +109,12 @@ namespace TaskManager
 			if (listViewProcesses.SelectedItems.Count > 0)
 				DestroyProcess(Convert.ToInt32(listViewProcesses.SelectedItems[0].Name));
 		}
+
+		private void contextMenuProcList_Opening(object sender, CancelEventArgs e)
+		{
+			toolStripMenuItemOpenFileLocation.Enabled =
+			toolStripMenuItemDestroy.Enabled =
+				listViewProcesses.SelectedItems.Count > 0;
+		}
 	}
 }
