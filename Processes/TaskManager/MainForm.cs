@@ -116,5 +116,26 @@ namespace TaskManager
 			toolStripMenuItemDestroy.Enabled =
 				listViewProcesses.SelectedItems.Count > 0;
 		}
+
+		private void toolStripMenuItemOpenFileLocation_Click(object sender, EventArgs e)
+		{
+			string filename = processes[Convert.ToInt32(listViewProcesses.SelectedItems[0].Name)].MainModule.FileName;
+			//MessageBox.Show(this, filename, "Location", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			//filename = filename.Remove(filename.LastIndexOf("\\"));
+			ShellExecute(this.Handle, "open", "explorer.exe", $"/select, \"{filename}\"", "", 1);
+			//Process.Start("explorer", filename);
+		}
+		//https://stackoverflow.com/questions/1746079/how-can-i-open-windows-explorer-to-a-certain-directory-from-within-a-wpf-app
+		//https://learn.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shellexecutea
+		[DllImport("shell32.dll")]
+		static extern IntPtr ShellExecute
+			(
+				IntPtr hwnd,
+				string lpOperation,
+				string lpFile,
+				string lpParameters,
+				string lpDirectory,
+				int nCmdShow
+			);
 	}
 }
