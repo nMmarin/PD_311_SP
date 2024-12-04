@@ -49,15 +49,20 @@
 			this.toolStripStatusLabelProcessCount = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPageProcesses = new System.Windows.Forms.TabPage();
-			this.tabPagePerformance = new System.Windows.Forms.TabPage();
 			this.listViewProcesses = new System.Windows.Forms.ListView();
-			this.timer = new System.Windows.Forms.Timer(this.components);
-			this.columnProcessName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnPID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnProcessName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.tabPagePerformance = new System.Windows.Forms.TabPage();
+			this.timer = new System.Windows.Forms.Timer(this.components);
+			this.contextMenuProcList = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.openFileLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.destroyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
 			this.mainMenu.SuspendLayout();
 			this.statusStripMain.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.tabPageProcesses.SuspendLayout();
+			this.contextMenuProcList.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// mainMenu
@@ -84,18 +89,19 @@
 			// mainMenuFileRun
 			// 
 			this.mainMenuFileRun.Name = "mainMenuFileRun";
-			this.mainMenuFileRun.Size = new System.Drawing.Size(95, 22);
+			this.mainMenuFileRun.Size = new System.Drawing.Size(180, 22);
 			this.mainMenuFileRun.Text = "Run";
+			this.mainMenuFileRun.Click += new System.EventHandler(this.mainMenuFileRun_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(92, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
 			// 
 			// mainMenuFileExit
 			// 
 			this.mainMenuFileExit.Name = "mainMenuFileExit";
-			this.mainMenuFileExit.Size = new System.Drawing.Size(95, 22);
+			this.mainMenuFileExit.Size = new System.Drawing.Size(180, 22);
 			this.mainMenuFileExit.Text = "Exit";
 			// 
 			// viewToolStripMenuItem
@@ -214,6 +220,31 @@
 			this.tabPageProcesses.Text = "Processes";
 			this.tabPageProcesses.UseVisualStyleBackColor = true;
 			// 
+			// listViewProcesses
+			// 
+			this.listViewProcesses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnPID,
+            this.columnProcessName});
+			this.listViewProcesses.ContextMenuStrip = this.contextMenuProcList;
+			this.listViewProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.listViewProcesses.FullRowSelect = true;
+			this.listViewProcesses.HideSelection = false;
+			this.listViewProcesses.Location = new System.Drawing.Point(3, 3);
+			this.listViewProcesses.MultiSelect = false;
+			this.listViewProcesses.Name = "listViewProcesses";
+			this.listViewProcesses.Size = new System.Drawing.Size(786, 372);
+			this.listViewProcesses.TabIndex = 0;
+			this.listViewProcesses.UseCompatibleStateImageBehavior = false;
+			this.listViewProcesses.View = System.Windows.Forms.View.Details;
+			// 
+			// columnPID
+			// 
+			this.columnPID.Text = "PID";
+			// 
+			// columnProcessName
+			// 
+			this.columnProcessName.Text = "Name";
+			// 
 			// tabPagePerformance
 			// 
 			this.tabPagePerformance.Location = new System.Drawing.Point(4, 22);
@@ -224,36 +255,38 @@
 			this.tabPagePerformance.Text = "Performance";
 			this.tabPagePerformance.UseVisualStyleBackColor = true;
 			// 
-			// listViewProcesses
-			// 
-			this.listViewProcesses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnPID,
-            this.columnProcessName});
-			this.listViewProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.listViewProcesses.FullRowSelect = true;
-			this.listViewProcesses.GridLines = true;
-			this.listViewProcesses.HideSelection = false;
-			this.listViewProcesses.Location = new System.Drawing.Point(3, 3);
-			this.listViewProcesses.MultiSelect = false;
-			this.listViewProcesses.Name = "listViewProcesses";
-			this.listViewProcesses.Size = new System.Drawing.Size(786, 372);
-			this.listViewProcesses.TabIndex = 0;
-			this.listViewProcesses.UseCompatibleStateImageBehavior = false;
-			this.listViewProcesses.View = System.Windows.Forms.View.Details;
-			// 
 			// timer
 			// 
 			this.timer.Enabled = true;
 			this.timer.Interval = 1000;
 			this.timer.Tick += new System.EventHandler(this.timer_Tick);
 			// 
-			// columnProcessName
+			// contextMenuProcList
 			// 
-			this.columnProcessName.Text = "Name";
+			this.contextMenuProcList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openFileLocationToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.destroyToolStripMenuItem});
+			this.contextMenuProcList.Name = "contextMenuProcList";
+			this.contextMenuProcList.Size = new System.Drawing.Size(181, 76);
 			// 
-			// columnPID
+			// openFileLocationToolStripMenuItem
 			// 
-			this.columnPID.Text = "PID";
+			this.openFileLocationToolStripMenuItem.Name = "openFileLocationToolStripMenuItem";
+			this.openFileLocationToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+			this.openFileLocationToolStripMenuItem.Text = "Open file location";
+			// 
+			// destroyToolStripMenuItem
+			// 
+			this.destroyToolStripMenuItem.Name = "destroyToolStripMenuItem";
+			this.destroyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.destroyToolStripMenuItem.Text = "Destroy";
+			this.destroyToolStripMenuItem.Click += new System.EventHandler(this.destroyToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator4
+			// 
+			this.toolStripSeparator4.Name = "toolStripSeparator4";
+			this.toolStripSeparator4.Size = new System.Drawing.Size(165, 6);
 			// 
 			// MainForm
 			// 
@@ -272,6 +305,7 @@
 			this.statusStripMain.PerformLayout();
 			this.tabControl.ResumeLayout(false);
 			this.tabPageProcesses.ResumeLayout(false);
+			this.contextMenuProcList.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -304,6 +338,10 @@
 		private System.Windows.Forms.Timer timer;
 		private System.Windows.Forms.ColumnHeader columnProcessName;
 		private System.Windows.Forms.ColumnHeader columnPID;
+		private System.Windows.Forms.ContextMenuStrip contextMenuProcList;
+		private System.Windows.Forms.ToolStripMenuItem openFileLocationToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+		private System.Windows.Forms.ToolStripMenuItem destroyToolStripMenuItem;
 	}
 }
 
