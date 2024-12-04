@@ -55,10 +55,15 @@ namespace TaskManager
 			this.columnProcessName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.tabPagePerformance = new System.Windows.Forms.TabPage();
 			this.timer = new System.Windows.Forms.Timer(this.components);
+			this.contextMenuProcList = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.toolStripMenuItemOpenFileLocation = new System.Windows.Forms.ToolStripMenuItem();
+			this.tollStripMenuItemDestroy = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
 			this.MainMenu.SuspendLayout();
 			this.statusStripName.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.tabControlProcesses.SuspendLayout();
+			this.contextMenuProcList.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// MainMenu
@@ -221,9 +226,9 @@ namespace TaskManager
 			this.listViewProcesses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnPID,
             this.columnProcessName});
+			this.listViewProcesses.ContextMenuStrip = this.contextMenuProcList;
 			this.listViewProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listViewProcesses.FullRowSelect = true;
-			this.listViewProcesses.GridLines = true;
 			this.listViewProcesses.HideSelection = false;
 			this.listViewProcesses.Location = new System.Drawing.Point(3, 3);
 			this.listViewProcesses.MultiSelect = false;
@@ -257,6 +262,34 @@ namespace TaskManager
 			this.timer.Interval = 1000;
 			this.timer.Tick += new System.EventHandler(this.timer_Tick);
 			// 
+			// contextMenuProcList
+			// 
+			this.contextMenuProcList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemOpenFileLocation,
+            this.toolStripSeparator4,
+            this.tollStripMenuItemDestroy});
+			this.contextMenuProcList.Name = "contextMenuProcList";
+			this.contextMenuProcList.Size = new System.Drawing.Size(181, 76);
+			this.contextMenuProcList.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuProcList_Opening);
+			// 
+			// toolStripMenuItemOpenFileLocation
+			// 
+			this.toolStripMenuItemOpenFileLocation.Name = "toolStripMenuItemOpenFileLocation";
+			this.toolStripMenuItemOpenFileLocation.Size = new System.Drawing.Size(180, 22);
+			this.toolStripMenuItemOpenFileLocation.Text = "Open File Location";
+			// 
+			// tollStripMenuItemDestroy
+			// 
+			this.tollStripMenuItemDestroy.Name = "tollStripMenuItemDestroy";
+			this.tollStripMenuItemDestroy.Size = new System.Drawing.Size(180, 22);
+			this.tollStripMenuItemDestroy.Text = "Destroy ";
+			this.tollStripMenuItemDestroy.Click += new System.EventHandler(this.destroyToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator4
+			// 
+			this.toolStripSeparator4.Name = "toolStripSeparator4";
+			this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -274,6 +307,7 @@ namespace TaskManager
 			this.statusStripName.PerformLayout();
 			this.tabControl.ResumeLayout(false);
 			this.tabControlProcesses.ResumeLayout(false);
+			this.contextMenuProcList.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -306,6 +340,10 @@ namespace TaskManager
 		private System.Windows.Forms.Timer timer;
 		private System.Windows.Forms.ColumnHeader columnProcessName;
 		private System.Windows.Forms.ColumnHeader columnPID;
+		private System.Windows.Forms.ContextMenuStrip contextMenuProcList;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOpenFileLocation;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+		private System.Windows.Forms.ToolStripMenuItem tollStripMenuItemDestroy;
 	}
 }
 
