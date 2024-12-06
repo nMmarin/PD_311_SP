@@ -8,6 +8,8 @@ https://www.youtube.com/playlist?list=PLeqyOOqxeiIMAsBCAT2iL0nEHONChw0yJ
 Books:
 https://citforum.ru/operating_systems/sos/contents.shtml
 
+in my humble opinion
+
 TODO:
 1. Обеспечить возможность задавать интервал обновления;
 2. Реализовать Topmost и Hide;
@@ -18,3 +20,4 @@ TODO:
 
 DONE:
 Написать диспетчер задач, выполняющий базовый набор функций;
+

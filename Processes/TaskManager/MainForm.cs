@@ -15,10 +15,20 @@ namespace TaskManager
 	public partial class MainForm : Form
 	{
 		Dictionary<int, Process> processes;
+		ListViewColumnSorter lvColumnSorter;
 		public MainForm()
 		{
 			InitializeComponent();
 			LoadProcesses();
+			foreach (ColumnHeader ch in this.listViewProcesses.Columns)
+			{
+				//https://learn.microsoft.com/en-us/troubleshoot/developer/visualstudio/csharp/language-compilers/sort-listview-by-column#:~:text=foreach%20(ColumnHeader%20ch%20in%20this.listView1.Columns)%0A%7B%0A%20%20%20%20ch.Width%20%3D%20%2D2%3B%0A%7D
+				//https://stackoverflow.com/questions/1257500/c-sharp-listview-column-width-auto
+				ch.Width = -1;//????
+			}
+
+			lvColumnSorter = new ListViewColumnSorter();
+			listViewProcesses.ListViewItemSorter = lvColumnSorter;
 		}
 
 		void LoadProcesses()
@@ -78,6 +88,12 @@ namespace TaskManager
 			processes = Process.GetProcesses().ToDictionary(i => i.Id);
 			RemoveOldProcesses();
 			AddNewProcesses();
+			//foreach (ColumnHeader ch in this.listViewProcesses.Columns)
+			//{
+			//	//https://learn.microsoft.com/en-us/troubleshoot/developer/visualstudio/csharp/language-compilers/sort-listview-by-column#:~:text=foreach%20(ColumnHeader%20ch%20in%20this.listView1.Columns)%0A%7B%0A%20%20%20%20ch.Width%20%3D%20%2D2%3B%0A%7D
+			//	//https://stackoverflow.com/questions/1257500/c-sharp-listview-column-width-auto
+			//	ch.Width = -2;//????
+			//}
 		}
 		void DestroyProcess(int pid)
 		{
@@ -139,5 +155,22 @@ namespace TaskManager
 				string lpDirectory,
 				int nCmdShow
 			);
+
+		private void listViewProcesses_ColumnClick(object sender, ColumnClickEventArgs e)
+		{
+			if (e.Column == lvColumnSorter.SortColumn)
+			{
+				if (lvColumnSorter.Order == SortOrder.Ascending)
+					lvColumnSorter.Order = SortOrder.Descending;
+				else
+					lvColumnSorter.Order = SortOrder.Ascending;
+			}
+			else
+			{
+				lvColumnSorter.SortColumn = e.Column;
+				lvColumnSorter.Order = SortOrder.Ascending;
+			}
+			this.listViewProcesses.Sort();
+		}
 	}
 }
