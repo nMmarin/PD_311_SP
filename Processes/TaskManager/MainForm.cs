@@ -56,8 +56,10 @@ namespace TaskManager
 		void AddProcessToListView(Process p)
 		{
 			ListViewItem item = new ListViewItem();
-			item.Name = item.Text = p.Id.ToString();
-			item.SubItems.Add(p.ProcessName);
+			item.Name = p.Id.ToString();
+			item.Text = p.ProcessName;
+			//item.Name = item.Text = p.Id.ToString();
+			item.SubItems.Add(p.Id.ToString());
 			listViewProcesses.Items.Add(item);
 		}
 		void RemoveOldProcesses()
@@ -65,7 +67,7 @@ namespace TaskManager
 			foreach (ListViewItem i in listViewProcesses.Items)
 			{
 				//if (processes[Convert.ToInt32(i.SubItems[0].Text)])
-				if (!processes.ContainsKey(Convert.ToInt32(i.SubItems[0].Text)))
+				if (!processes.ContainsKey(Convert.ToInt32(i.SubItems[1].Text)))
 				{
 					listViewProcesses.Items.Remove(i);
 				}

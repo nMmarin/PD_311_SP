@@ -222,9 +222,10 @@
 			// 
 			// listViewProcesses
 			// 
+			this.listViewProcesses.AllowColumnReorder = true;
 			this.listViewProcesses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnPID,
-            this.columnProcessName});
+            this.columnProcessName,
+            this.columnPID});
 			this.listViewProcesses.ContextMenuStrip = this.contextMenuProcList;
 			this.listViewProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listViewProcesses.FullRowSelect = true;
@@ -252,25 +253,25 @@
             this.toolStripSeparator4,
             this.toolStripMenuItemDestroy});
 			this.contextMenuProcList.Name = "contextMenuProcList";
-			this.contextMenuProcList.Size = new System.Drawing.Size(181, 76);
+			this.contextMenuProcList.Size = new System.Drawing.Size(169, 54);
 			this.contextMenuProcList.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuProcList_Opening);
 			// 
 			// toolStripMenuItemOpenFileLocation
 			// 
 			this.toolStripMenuItemOpenFileLocation.Name = "toolStripMenuItemOpenFileLocation";
-			this.toolStripMenuItemOpenFileLocation.Size = new System.Drawing.Size(180, 22);
+			this.toolStripMenuItemOpenFileLocation.Size = new System.Drawing.Size(168, 22);
 			this.toolStripMenuItemOpenFileLocation.Text = "Open file location";
 			this.toolStripMenuItemOpenFileLocation.Click += new System.EventHandler(this.toolStripMenuItemOpenFileLocation_Click);
 			// 
 			// toolStripSeparator4
 			// 
 			this.toolStripSeparator4.Name = "toolStripSeparator4";
-			this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+			this.toolStripSeparator4.Size = new System.Drawing.Size(165, 6);
 			// 
 			// toolStripMenuItemDestroy
 			// 
 			this.toolStripMenuItemDestroy.Name = "toolStripMenuItemDestroy";
-			this.toolStripMenuItemDestroy.Size = new System.Drawing.Size(180, 22);
+			this.toolStripMenuItemDestroy.Size = new System.Drawing.Size(168, 22);
 			this.toolStripMenuItemDestroy.Text = "Destroy";
 			this.toolStripMenuItemDestroy.Click += new System.EventHandler(this.destroyToolStripMenuItem_Click);
 			// 
