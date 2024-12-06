@@ -53,12 +53,12 @@ namespace TaskManager
 			this.listViewProcesses = new System.Windows.Forms.ListView();
 			this.columnPID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnProcessName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.tabPagePerformance = new System.Windows.Forms.TabPage();
-			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.contextMenuProcList = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemOpenFileLocation = new System.Windows.Forms.ToolStripMenuItem();
-			this.tollStripMenuItemDestroy = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+			this.tollStripMenuItemDestroy = new System.Windows.Forms.ToolStripMenuItem();
+			this.tabPagePerformance = new System.Windows.Forms.TabPage();
+			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.MainMenu.SuspendLayout();
 			this.statusStripName.SuspendLayout();
 			this.tabControl.SuspendLayout();
@@ -90,19 +90,19 @@ namespace TaskManager
 			// mainMenuFileRun
 			// 
 			this.mainMenuFileRun.Name = "mainMenuFileRun";
-			this.mainMenuFileRun.Size = new System.Drawing.Size(180, 22);
+			this.mainMenuFileRun.Size = new System.Drawing.Size(95, 22);
 			this.mainMenuFileRun.Text = "Run";
 			this.mainMenuFileRun.Click += new System.EventHandler(this.mainMenuFileRun_Click_1);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(92, 6);
 			// 
 			// mainMenuFileExit
 			// 
 			this.mainMenuFileExit.Name = "mainMenuFileExit";
-			this.mainMenuFileExit.Size = new System.Drawing.Size(180, 22);
+			this.mainMenuFileExit.Size = new System.Drawing.Size(95, 22);
 			this.mainMenuFileExit.Text = "Exit";
 			// 
 			// viewToolStripMenuItem
@@ -223,9 +223,10 @@ namespace TaskManager
 			// 
 			// listViewProcesses
 			// 
+			this.listViewProcesses.AllowColumnReorder = true;
 			this.listViewProcesses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnPID,
-            this.columnProcessName});
+            this.columnProcessName,
+            this.columnPID});
 			this.listViewProcesses.ContextMenuStrip = this.contextMenuProcList;
 			this.listViewProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listViewProcesses.FullRowSelect = true;
@@ -246,6 +247,35 @@ namespace TaskManager
 			// 
 			this.columnProcessName.Text = "Name";
 			// 
+			// contextMenuProcList
+			// 
+			this.contextMenuProcList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemOpenFileLocation,
+            this.toolStripSeparator4,
+            this.tollStripMenuItemDestroy});
+			this.contextMenuProcList.Name = "contextMenuProcList";
+			this.contextMenuProcList.Size = new System.Drawing.Size(174, 54);
+			this.contextMenuProcList.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuProcList_Opening);
+			// 
+			// toolStripMenuItemOpenFileLocation
+			// 
+			this.toolStripMenuItemOpenFileLocation.Name = "toolStripMenuItemOpenFileLocation";
+			this.toolStripMenuItemOpenFileLocation.Size = new System.Drawing.Size(173, 22);
+			this.toolStripMenuItemOpenFileLocation.Text = "Open File Location";
+			this.toolStripMenuItemOpenFileLocation.Click += new System.EventHandler(this.toolStripMenuItemOpenFileLocation_Click);
+			// 
+			// toolStripSeparator4
+			// 
+			this.toolStripSeparator4.Name = "toolStripSeparator4";
+			this.toolStripSeparator4.Size = new System.Drawing.Size(170, 6);
+			// 
+			// tollStripMenuItemDestroy
+			// 
+			this.tollStripMenuItemDestroy.Name = "tollStripMenuItemDestroy";
+			this.tollStripMenuItemDestroy.Size = new System.Drawing.Size(173, 22);
+			this.tollStripMenuItemDestroy.Text = "Destroy ";
+			this.tollStripMenuItemDestroy.Click += new System.EventHandler(this.destroyToolStripMenuItem_Click);
+			// 
 			// tabPagePerformance
 			// 
 			this.tabPagePerformance.Location = new System.Drawing.Point(4, 22);
@@ -261,35 +291,6 @@ namespace TaskManager
 			this.timer.Enabled = true;
 			this.timer.Interval = 1000;
 			this.timer.Tick += new System.EventHandler(this.timer_Tick);
-			// 
-			// contextMenuProcList
-			// 
-			this.contextMenuProcList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemOpenFileLocation,
-            this.toolStripSeparator4,
-            this.tollStripMenuItemDestroy});
-			this.contextMenuProcList.Name = "contextMenuProcList";
-			this.contextMenuProcList.Size = new System.Drawing.Size(181, 76);
-			this.contextMenuProcList.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuProcList_Opening);
-			// 
-			// toolStripMenuItemOpenFileLocation
-			// 
-			this.toolStripMenuItemOpenFileLocation.Name = "toolStripMenuItemOpenFileLocation";
-			this.toolStripMenuItemOpenFileLocation.Size = new System.Drawing.Size(180, 22);
-			this.toolStripMenuItemOpenFileLocation.Text = "Open File Location";
-			this.toolStripMenuItemOpenFileLocation.Click += new System.EventHandler(this.toolStripMenuItemOpenFileLocation_Click);
-			// 
-			// tollStripMenuItemDestroy
-			// 
-			this.tollStripMenuItemDestroy.Name = "tollStripMenuItemDestroy";
-			this.tollStripMenuItemDestroy.Size = new System.Drawing.Size(180, 22);
-			this.tollStripMenuItemDestroy.Text = "Destroy ";
-			this.tollStripMenuItemDestroy.Click += new System.EventHandler(this.destroyToolStripMenuItem_Click);
-			// 
-			// toolStripSeparator4
-			// 
-			this.toolStripSeparator4.Name = "toolStripSeparator4";
-			this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
 			// 
 			// MainForm
 			// 
