@@ -10,13 +10,26 @@ namespace TaskManager
 {
 	class ListViewColumnSorter:IComparer
 	{
-		int columnToSort;
-		SortOrder orderOfSort;
+		//int columnToSort;
+		//SortOrder orderOfSort;
 		CaseInsensitiveComparer objectCompare;
+
+		public int SortColumn { get; set; }
+		//{
+		//	set => columnToSort = value;
+		//	get => columnToSort;
+		//}
+		public SortOrder Order { get; set; }
+		//{
+		//	get => orderOfSort;
+		//	set => orderOfSort = value;
+		//}
 		public ListViewColumnSorter()
 		{
-			columnToSort = 0;
-			orderOfSort = SortOrder.None;
+			///columnToSort = 0;
+			//orderOfSort = SortOrder.None;
+			SortColumn = 0;
+			Order = SortOrder.None;
 			objectCompare = new CaseInsensitiveComparer();
 		}
 		public int Compare(object x, object y)
@@ -24,39 +37,31 @@ namespace TaskManager
 			ListViewItem listViewX = (ListViewItem)x;
 			ListViewItem listViewY = (ListViewItem)y;
 			int compareResult;
-			if (double.TryParse(listViewX.SubItems[columnToSort].Text,out _))
+			if (double.TryParse(listViewX.SubItems[SortColumn].Text,out _))
 			{
 				compareResult = objectCompare.Compare(
-					Convert.ToDouble(listViewX.SubItems[columnToSort].Text),
-					Convert.ToDouble(listViewY.SubItems[columnToSort].Text)
+					Convert.ToDouble(listViewX.SubItems[SortColumn].Text),
+					Convert.ToDouble(listViewY.SubItems[SortColumn].Text)
 					);
 			}
 			else
 			{
-				 compareResult = objectCompare.Compare(listViewX.SubItems[columnToSort].Text, listViewY.SubItems[columnToSort].Text); 
+				 compareResult = objectCompare.Compare
+					(
+					 listViewX.SubItems[SortColumn].Text, 
+					 listViewY.SubItems[SortColumn].Text
+					 ); 
 			}
 
-			if (orderOfSort == SortOrder.Ascending)
+			if (Order == SortOrder.Ascending)
 			{
 				return compareResult;
 			}
-			else if (orderOfSort == SortOrder.Descending)
-			{
+			else if (Order == SortOrder.Descending)
+			
 				return -compareResult;
-			}
 			
 			return compareResult;
 		}
-		public int SortColumn
-		{
-			set => columnToSort = value;
-			get => columnToSort;
-		}
-		public SortOrder Order
-		{
-			get => orderOfSort;
-			set => orderOfSort = value;
-		}
-
 	}
 }
