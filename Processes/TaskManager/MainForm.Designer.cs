@@ -39,6 +39,9 @@
 			this.mainMenuViewHide = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.mainMenuViewColumns = new System.Windows.Forms.ToolStripMenuItem();
+			this.mainMenuViewSelectColumnsPID = new System.Windows.Forms.ToolStripMenuItem();
+			this.mainMenuViewSelectColumnsOwner = new System.Windows.Forms.ToolStripMenuItem();
+			this.mainMenuViewSelectColumnsPath = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.mainMenuViewRefresh = new System.Windows.Forms.ToolStripMenuItem();
 			this.mainMenuViewRefreshRate = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,17 +55,14 @@
 			this.listViewProcesses = new System.Windows.Forms.ListView();
 			this.columnProcessName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnPID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnOwner = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnFilepath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.contextMenuProcList = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemOpenFileLocation = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripMenuItemDestroy = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabPagePerformance = new System.Windows.Forms.TabPage();
 			this.timer = new System.Windows.Forms.Timer(this.components);
-			this.columnFilepath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnOwner = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.mainMenuViewSelectColumnsPID = new System.Windows.Forms.ToolStripMenuItem();
-			this.mainMenuViewSelectColumnsOwner = new System.Windows.Forms.ToolStripMenuItem();
-			this.mainMenuViewSelectColumnsPath = new System.Windows.Forms.ToolStripMenuItem();
 			this.mainMenu.SuspendLayout();
 			this.statusStripMain.SuspendLayout();
 			this.tabControl.SuspendLayout();
@@ -151,6 +151,30 @@
 			this.mainMenuViewColumns.Name = "mainMenuViewColumns";
 			this.mainMenuViewColumns.Size = new System.Drawing.Size(190, 22);
 			this.mainMenuViewColumns.Text = "Select columns";
+			// 
+			// mainMenuViewSelectColumnsPID
+			// 
+			this.mainMenuViewSelectColumnsPID.CheckOnClick = true;
+			this.mainMenuViewSelectColumnsPID.Name = "mainMenuViewSelectColumnsPID";
+			this.mainMenuViewSelectColumnsPID.Size = new System.Drawing.Size(180, 22);
+			this.mainMenuViewSelectColumnsPID.Text = "PID";
+			this.mainMenuViewSelectColumnsPID.Click += new System.EventHandler(this.mainMenuViewSelectColumns_Click);
+			// 
+			// mainMenuViewSelectColumnsOwner
+			// 
+			this.mainMenuViewSelectColumnsOwner.CheckOnClick = true;
+			this.mainMenuViewSelectColumnsOwner.Name = "mainMenuViewSelectColumnsOwner";
+			this.mainMenuViewSelectColumnsOwner.Size = new System.Drawing.Size(180, 22);
+			this.mainMenuViewSelectColumnsOwner.Text = "Owner";
+			this.mainMenuViewSelectColumnsOwner.Click += new System.EventHandler(this.mainMenuViewSelectColumns_Click);
+			// 
+			// mainMenuViewSelectColumnsPath
+			// 
+			this.mainMenuViewSelectColumnsPath.CheckOnClick = true;
+			this.mainMenuViewSelectColumnsPath.Name = "mainMenuViewSelectColumnsPath";
+			this.mainMenuViewSelectColumnsPath.Size = new System.Drawing.Size(180, 22);
+			this.mainMenuViewSelectColumnsPath.Text = "Path";
+			this.mainMenuViewSelectColumnsPath.Click += new System.EventHandler(this.mainMenuViewSelectColumns_Click);
 			// 
 			// toolStripSeparator3
 			// 
@@ -258,6 +282,15 @@
 			// 
 			this.columnPID.Text = "PID";
 			// 
+			// columnOwner
+			// 
+			this.columnOwner.Text = "Owner";
+			// 
+			// columnFilepath
+			// 
+			this.columnFilepath.Text = "Path";
+			this.columnFilepath.Width = 85;
+			// 
 			// contextMenuProcList
 			// 
 			this.contextMenuProcList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -302,36 +335,6 @@
 			this.timer.Enabled = true;
 			this.timer.Interval = 1000;
 			this.timer.Tick += new System.EventHandler(this.timer_Tick);
-			// 
-			// columnFilepath
-			// 
-			this.columnFilepath.Text = "Path";
-			this.columnFilepath.Width = 85;
-			// 
-			// columnOwner
-			// 
-			this.columnOwner.Text = "Owner";
-			// 
-			// mainMenuViewSelectColumnsPID
-			// 
-			this.mainMenuViewSelectColumnsPID.CheckOnClick = true;
-			this.mainMenuViewSelectColumnsPID.Name = "mainMenuViewSelectColumnsPID";
-			this.mainMenuViewSelectColumnsPID.Size = new System.Drawing.Size(180, 22);
-			this.mainMenuViewSelectColumnsPID.Text = "PID";
-			// 
-			// mainMenuViewSelectColumnsOwner
-			// 
-			this.mainMenuViewSelectColumnsOwner.CheckOnClick = true;
-			this.mainMenuViewSelectColumnsOwner.Name = "mainMenuViewSelectColumnsOwner";
-			this.mainMenuViewSelectColumnsOwner.Size = new System.Drawing.Size(180, 22);
-			this.mainMenuViewSelectColumnsOwner.Text = "Owner";
-			// 
-			// mainMenuViewSelectColumnsPath
-			// 
-			this.mainMenuViewSelectColumnsPath.CheckOnClick = true;
-			this.mainMenuViewSelectColumnsPath.Name = "mainMenuViewSelectColumnsPath";
-			this.mainMenuViewSelectColumnsPath.Size = new System.Drawing.Size(180, 22);
-			this.mainMenuViewSelectColumnsPath.Text = "Path";
 			// 
 			// MainForm
 			// 

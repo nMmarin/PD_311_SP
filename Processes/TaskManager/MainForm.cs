@@ -17,6 +17,9 @@ namespace TaskManager
 	{
 		Dictionary<int, Process> processes;
 		ListViewColumnSorter lvColumnSorter;
+
+		Dictionary<string, bool> selectedColumns = new Dictionary<string, bool>();
+
 		public MainForm()
 		{
 			InitializeComponent();
@@ -26,19 +29,39 @@ namespace TaskManager
 			lvColumnSorter = new ListViewColumnSorter();
 			listViewProcesses.ListViewItemSorter = lvColumnSorter;
 
-			AllocConsole();
-		}
-		void SetColumns()
-		{
-			listViewProcesses.Columns.Clear();
-			listViewProcesses.Columns.Add("Name");
-			//Console.WriteLine(listViewProcesses.Items[0].SubItems["PID"].Name);
-			if (mainMenuViewSelectColumnsPID.Checked) listViewProcesses.Columns.Add("PID");
-			if (mainMenuViewSelectColumnsOwner.Checked) listViewProcesses.Columns.Add("Owner");
-			if (mainMenuViewSelectColumnsPath.Checked) listViewProcesses.Columns.Add("Path");
-
 			AdjustColumnsWidth();
+
+			AllocConsole();
+			InitSelectedColumns();
 		}
+		void InitSelectedColumns()
+		{
+			foreach (ToolStripMenuItem i in mainMenuViewColumns.DropDownItems)
+			{
+				selectedColumns[i.Text] = i.Checked;
+			}
+			PrintSelectedColumns();
+		}
+		void SetColumnsVisibility()
+		{
+			AdjustColumnsWidth();
+			for (int i = 1; i < listViewProcesses.Columns.Count; i++)
+			{
+				if (selectedColumns[listViewProcesses.Columns[i].Text] == false)
+					listViewProcesses.Columns[i].Width = 0;
+			}
+		}
+		//void SetColumns()
+		//{
+		//	listViewProcesses.Columns.Clear();
+		//	listViewProcesses.Columns.Add("Name");
+		//	//Console.WriteLine(listViewProcesses.Items[0].SubItems["PID"].Name);
+		//	if (mainMenuViewSelectColumnsPID.Checked) listViewProcesses.Columns.Add("PID");
+		//	if (mainMenuViewSelectColumnsOwner.Checked) listViewProcesses.Columns.Add("Owner");
+		//	if (mainMenuViewSelectColumnsPath.Checked) listViewProcesses.Columns.Add("Path");
+
+		//	AdjustColumnsWidth();
+		//}
 		void AdjustColumnsWidth()
 		{
 			foreach (ColumnHeader ch in this.listViewProcesses.Columns)
@@ -236,5 +259,31 @@ namespace TaskManager
 			}
 			return username;
 		}
+		void PrintSelectedColumns()
+		{
+			foreach (KeyValuePair<string, bool> p in selectedColumns)
+			{
+				Console.WriteLine(p.Key + "\t" + p.Value);
+			}
+			Console.WriteLine("\n------------------------------------\n");
+		}
+		private void mainMenuViewSelectColumns_Click(object sender, EventArgs e)
+		{
+			selectedColumns[(sender as ToolStripMenuItem).Text] = (sender as ToolStripMenuItem).Checked;
+			PrintSelectedColumns();
+			SetColumnsVisibility();
+		}
+
+		//private void mainMenuViewSelectColumnsOwner_Click(object sender, EventArgs e)
+		//{
+		//	selectedColumns[(sender as ToolStripMenuItem).Text] = (sender as ToolStripMenuItem).Checked;
+		//	PrintSelectedColumns();
+		//}
+
+		//private void mainMenuViewSelectColumnsPath_Click(object sender, EventArgs e)
+		//{
+		//	selectedColumns[(sender as ToolStripMenuItem).Text] = (sender as ToolStripMenuItem).Checked;
+		//	PrintSelectedColumns();
+		//}
 	}
 }
