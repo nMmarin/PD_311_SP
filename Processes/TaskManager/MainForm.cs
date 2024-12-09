@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Security.Principal;
 
 namespace TaskManager
 {
@@ -70,6 +71,16 @@ namespace TaskManager
 			item.Text = p.ProcessName;
 			//item.Name = item.Text = p.Id.ToString();
 			item.SubItems.Add(p.Id.ToString());
+			item.SubItems.Add(GetProcessUser(p));
+			try
+			{
+				item.SubItems.Add(p.MainModule.FileName);
+			}
+			catch (Win32Exception ex)
+			{
+				item.SubItems.Add("");
+			}
+
 			listViewProcesses.Items.Add(item);
 		}
 		void RemoveOldProcesses()
@@ -171,6 +182,32 @@ namespace TaskManager
 				lvColumnSorter.Order = SortOrder.Ascending;
 			}
 			this.listViewProcesses.Sort();
+		}
+
+		//Process owner:
+		//https://stackoverflow.com/questions/777548/how-do-i-determine-the-owner-of-a-process-in-c
+		[DllImport("advapi32.dll", SetLastError = true)]
+		static extern bool OpenProcessToken(IntPtr handle, uint DesiredAccess, out IntPtr TokenHandle);
+		[DllImport("kernel32.dll", SetLastError = true)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		static extern bool CloseHandle(IntPtr hObject);
+		static string GetProcessUser(Process process)
+		{
+			string username = "N/A";
+			IntPtr processHandle = IntPtr.Zero;
+			try
+			{
+				OpenProcessToken(process.Handle, 8, out processHandle);
+				using (WindowsIdentity wi = new WindowsIdentity(processHandle))
+				{
+					username = wi.Name;
+				}
+			}
+			catch (Win32Exception ex)
+			{
+
+			}
+			return username;
 		}
 	}
 }

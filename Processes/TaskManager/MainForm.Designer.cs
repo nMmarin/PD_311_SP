@@ -50,14 +50,16 @@
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPageProcesses = new System.Windows.Forms.TabPage();
 			this.listViewProcesses = new System.Windows.Forms.ListView();
-			this.columnPID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnProcessName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnPID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.contextMenuProcList = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemOpenFileLocation = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripMenuItemDestroy = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabPagePerformance = new System.Windows.Forms.TabPage();
 			this.timer = new System.Windows.Forms.Timer(this.components);
+			this.columnFilepath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnOwner = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.mainMenu.SuspendLayout();
 			this.statusStripMain.SuspendLayout();
 			this.tabControl.SuspendLayout();
@@ -225,7 +227,9 @@
 			this.listViewProcesses.AllowColumnReorder = true;
 			this.listViewProcesses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnProcessName,
-            this.columnPID});
+            this.columnPID,
+            this.columnOwner,
+            this.columnFilepath});
 			this.listViewProcesses.ContextMenuStrip = this.contextMenuProcList;
 			this.listViewProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listViewProcesses.FullRowSelect = true;
@@ -239,13 +243,13 @@
 			this.listViewProcesses.View = System.Windows.Forms.View.Details;
 			this.listViewProcesses.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewProcesses_ColumnClick);
 			// 
-			// columnPID
-			// 
-			this.columnPID.Text = "PID";
-			// 
 			// columnProcessName
 			// 
 			this.columnProcessName.Text = "Name";
+			// 
+			// columnPID
+			// 
+			this.columnPID.Text = "PID";
 			// 
 			// contextMenuProcList
 			// 
@@ -291,6 +295,15 @@
 			this.timer.Enabled = true;
 			this.timer.Interval = 1000;
 			this.timer.Tick += new System.EventHandler(this.timer_Tick);
+			// 
+			// columnFilepath
+			// 
+			this.columnFilepath.Text = "Path";
+			this.columnFilepath.Width = 85;
+			// 
+			// columnOwner
+			// 
+			this.columnOwner.Text = "Owner";
 			// 
 			// MainForm
 			// 
@@ -346,6 +359,8 @@
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOpenFileLocation;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDestroy;
+		private System.Windows.Forms.ColumnHeader columnFilepath;
+		private System.Windows.Forms.ColumnHeader columnOwner;
 	}
 }
 
